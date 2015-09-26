@@ -13,7 +13,6 @@
 -(id)init{
     self = [super init];
     if (self) {
-        // Any custom setup work goes here
         _title = @"(no title set)";
         _descript = @"(no description set)";
         _dueDate = [[NSDate alloc] init];

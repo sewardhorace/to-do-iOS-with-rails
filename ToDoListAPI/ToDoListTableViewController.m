@@ -19,14 +19,13 @@
 
 @implementation ToDoListTableViewController
 
-
 -(void)loadToDoData{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSString *URLString = @"http://infinite-earth-8625.herokuapp.com/to_dos";
+//    NSString *URLString = @"http://0.0.0.0:3000/to_dos.json";
     
     [manager GET:URLString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
         self.toDoListData = [NSArray arrayWithArray:responseObject];
         [self.tableView reloadData];
         
@@ -38,6 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self loadToDoData]; //also called in viewWillAppear
+}
+-(void)viewWillAppear:(BOOL)animated{
     [self loadToDoData];
 }
 
@@ -47,7 +49,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -117,12 +118,15 @@
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSDictionary *result = [self.toDoListData objectAtIndex:indexPath.row];
+    
+    NSString *toDoID = [result objectForKey:@"id"];
     NSString *title = [result objectForKey:@"title"];
     NSString *descript = [result objectForKey:@"description"];
     NSDate *dueDate = [result objectForKey:@"due_date"];
 //    NSInteger *priority = [result objectForKey:@"priority"];
     
     ToDoItem *todo = [[ToDoItem alloc] init];
+    todo.toDoID = toDoID;
     todo.title = title;
     if (descript) {
        todo.descript = descript;
@@ -131,10 +135,6 @@
         todo.dueDate = dueDate;
     }
     viewController.todo = todo;
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [self loadToDoData];
 }
 
 @end

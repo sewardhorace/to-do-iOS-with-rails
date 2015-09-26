@@ -38,6 +38,10 @@
     self.successLabel.textColor = self.errorColor;
     [self.successLabel setHidden:false];
 }
+-(void)clearFields{
+    self.titleTextField.text = @"";
+    self.descriptionTextField.text = @"";
+}
 
 -(void)makeNewToDoItemPOSTRequestWithToDO:(ToDoItem *)todo{
     
@@ -51,7 +55,7 @@
     
     NSDictionary *toDoDictionary = @{@"to_do":toDoParams};
     
-    NSString *urlString = @"http://infinite-earth-8625.herokuapp.com/to_dos";
+    NSString *urlString = @"http://infinite-earth-8625.herokuapp.com/to_dos.json";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -59,6 +63,7 @@
         
         NSLog(@"success! Object: %@", responseObject);
         [self successMessageWithText:@"Saved!"];
+        [self clearFields];
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
