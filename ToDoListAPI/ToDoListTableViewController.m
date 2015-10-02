@@ -22,10 +22,10 @@
 -(void)loadToDoData{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSString *URLString = @"http://infinite-earth-8625.herokuapp.com/to_dos";
-//    NSString *URLString = @"http://0.0.0.0:3000/to_dos.json";
+//    NSString *urlString = @"http://localhost:3000/api/v1/to_dos";
+    NSString *urlString = @"http://infinite-earth-8625.herokuapp.com/api/v1/to_dos";
     
-    [manager GET:URLString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         self.toDoListData = [NSArray arrayWithArray:responseObject];
         [self.tableView reloadData];
         

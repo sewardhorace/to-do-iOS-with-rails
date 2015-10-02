@@ -55,7 +55,8 @@
     
     NSDictionary *toDoDictionary = @{@"to_do":toDoParams};
     
-    NSString *urlString = @"http://infinite-earth-8625.herokuapp.com/to_dos.json";
+//    NSString *urlString = @"http://localhost:3000/api/v1/to_dos.json";
+    NSString *urlString = @"http://infinite-earth-8625.herokuapp.com/api/v1/to_dos.json";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

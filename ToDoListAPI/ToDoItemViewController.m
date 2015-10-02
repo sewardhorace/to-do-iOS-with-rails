@@ -21,9 +21,9 @@
 
 -(void)deleteToDoItem{
     
-    NSString *URLString = [NSString stringWithFormat:@"http://infinite-earth-8625.herokuapp.com/to_dos/%@.json",self.todo.toDoID];
+    NSString *URLString = [NSString stringWithFormat:@"http://infinite-earth-8625.herokuapp.com/api/v1/to_dos/%@.json",self.todo.toDoID];
     
-//    NSString *URLString = [NSString stringWithFormat:@"http://0.0.0.0:3000/to_dos/%@.json", self.todo.toDoID];
+//    NSString *URLString = [NSString stringWithFormat:@"http://0.0.0.0:3000/api/v1/to_dos/%@.json", self.todo.toDoID];
     
     NSLog(@"URL: %@", URLString);
     
@@ -79,17 +79,17 @@
     
     self.titleLabel.text = self.todo.title;
     
-//    if (self.todo.descript != NULL){
-//        self.descriptionLabel.text = self.todo.descript;
-//    } else {
-//        self.descriptionLabel.text = @"(none)";
-//    }
-//    
-//    if (self.todo.dueDate != NULL){
-//        self.dueDateLabel.text = [NSString stringWithFormat:@"%@",self.todo.dueDate];
-//    } else {
-//        self.dueDateLabel.text = @"(none set)";
-//    }
+    if (self.todo.descript != NULL){
+        self.descriptionLabel.text = self.todo.descript;
+    } else {
+        self.descriptionLabel.text = @"(none)";
+    }
+    
+    if (self.todo.dueDate != NULL){
+        self.dueDateLabel.text = [NSString stringWithFormat:@"%@",self.todo.dueDate];
+    } else {
+        self.dueDateLabel.text = @"(none set)";
+    }
     
 }
 
